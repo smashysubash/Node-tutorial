@@ -1,0 +1,20 @@
+{
+  "name": "node-tutorial",
+  "version": "1.0.0",
+  "description": "node practise codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smashysubash/Node-tutorial.git"
+  },
+  "author": "smashy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smashysubash/Node-tutorial/issues"
+  },
+  "homepage": "https://github.com/smashysubash/Node-tutorial#readme"
+}
