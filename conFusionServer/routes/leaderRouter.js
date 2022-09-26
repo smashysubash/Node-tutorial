@@ -21,7 +21,7 @@ leaderRouter.route('/')
 .post((req,res,next)=>{
     Leaders.create(req.body)
     .then((leader)=>{
-        console.log('Dish created');
+        console.log('Leader created');
         res.statusCode = 200;
         res.setHeader('content-Type','application/json');
         res.json(leader);
