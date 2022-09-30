@@ -4,13 +4,22 @@ var User  = require('../models/user');
 var passport = require('passport');
 var authenticate = require('../authenticate');
 
+const Users = require('../models/user');
 
 var router = express.Router();
 router.use(bodyParser.json());
 
-router.get('/',function(req,res,next){
-  res.send('respond with resouce');
-});
+router.route('/')
+.get(authenticate.verifyUser,authenticate.verifyAdmin ,(req,res,next)=>{
+    Users.find({})
+    .then((users)=>{
+        res.statusCode = 200;
+        res.setHeader('content-Type','application/json');
+        res.json(users);
+    }, (err)=> next(err))
+    .catch((err)=> next(err));
+
+})
 
 
 router.post('/signup', (req, res, next) => {
@@ -53,7 +62,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 });
 
 
-router.get('/logout', (req, res) => {
+router.post('/logout', (req, res,next) => {
   if (req.session) {
     req.session.destroy();
     res.clearCookie('session-id');
@@ -65,6 +74,5 @@ router.get('/logout', (req, res) => {
     next(err);
   }
 });
-
 
 module.exports = router;
